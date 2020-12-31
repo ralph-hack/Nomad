@@ -13,7 +13,7 @@
 				 <input type="button" value="My Location"/>
 				 <p>Click the button to get your coordinates.</p>
 
-				 <button onclick="getLocation()">Try It</button>
+				 <button onclick="getLocation(event)">Try It</button>
 
 				  <p id="demo"></p>
 
@@ -31,19 +31,23 @@
         <script>
 		var x = document.getElementById("demo");
 
-function getLocation() {
+function getLocation(event) {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    x.innerHTML = "Geolocation is not supported by this browser.";	
   }
+  event.preventDefault()
 }
 
 function showPosition(position) {
   x.innerHTML = "Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude;
+  
+  // TODO: Use this api to get the city, state, country https://nominatim.openstreetmap.org/reverse?lat=47.6151808&lon=-122.1820416
 }
-
+</script>
+<script>
 		
             const width = 960;
             const height = 500;
